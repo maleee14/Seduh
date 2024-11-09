@@ -110,16 +110,16 @@
                                         value="{{ Session::get('grand_total') }}">
                                 </div>
                             </div>
-                            {{-- <div class="col-md-12">
+                            <div class="col-md-12">
                                 <div class="form-group mt-4">
                                     <div class="radio">
                                         <button type="submit" class="btn btn-primary py-3 px-4">Place an order</button>
                                     </div>
                                 </div>
-                            </div> --}}
+                            </div>
                         </div>
 
-                        <div class="row mt-5 pt-3 d-flex">
+                        {{-- <div class="row mt-5 pt-3 d-flex">
                             <div class="col-md-6 d-flex">
                                 <div class="cart-detail cart-total ftco-bg-dark p-3 p-md-4">
                                     <h3 class="billing-heading mb-4">Cart Total</h3>
@@ -165,7 +165,7 @@
                                     <button type="submit" class="btn btn-primary py-3 px-4">Place an order</button>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </form><!-- END -->
 
                 </div> <!-- .col-md-8 -->
