@@ -32,7 +32,7 @@
                 <div class="col-md-6">
                     <h3 class="mb-5 heading-pricing ftco-animate">Main Dish</h3>
                     @foreach ($mainDish as $item)
-                        <a href="{{ route('single.product', $item->id) }}" class="pricing-entry d-flex ftco-animate">
+                        <a href="{{ route('single.product', $item->name) }}" class="pricing-entry d-flex ftco-animate">
                             <div class="img" style="background-image: url({{ url('storage', $item->image) }});">
                             </div>
                             <div class="desc pl-3">
@@ -51,7 +51,7 @@
                 <div class="col-md-6">
                     <h3 class="mb-5 heading-pricing ftco-animate">Drinks</h3>
                     @foreach ($drinks as $item)
-                        <a href="{{ route('single.product', $item->id) }}" class="pricing-entry d-flex ftco-animate">
+                        <a href="{{ route('single.product', $item->name) }}" class="pricing-entry d-flex ftco-animate">
                             <div class="img" style="background-image: url({{ url('storage', $item->image) }});">
                             </div>
                             <div class="desc pl-3">
@@ -69,7 +69,7 @@
                 <div class="col-md-6">
                     <h3 class="mb-5 heading-pricing ftco-animate">Coffee</h3>
                     @foreach ($coffee as $item)
-                        <a href="{{ route('single.product', $item->id) }}" class="pricing-entry d-flex ftco-animate">
+                        <a href="{{ route('single.product', $item->name) }}" class="pricing-entry d-flex ftco-animate">
                             <div class="img" style="background-image: url({{ url('storage', $item->image) }});">
                             </div>
                             <div class="desc pl-3">
@@ -87,7 +87,7 @@
                 <div class="col-md-6">
                     <h3 class="mb-5 heading-pricing ftco-animate">Dessert</h3>
                     @foreach ($desserts as $item)
-                        <a href="{{ route('single.product', $item->id) }}" class="pricing-entry d-flex ftco-animate">
+                        <a href="{{ route('single.product', $item->name) }}" class="pricing-entry d-flex ftco-animate">
                             <div class="img" style="background-image: url({{ url('storage', $item->image) }});">
                             </div>
                             <div class="desc pl-3">

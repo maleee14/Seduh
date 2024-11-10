@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 // Pages
 Route::get('/', [HomepageController::class, 'index'])->name('home');
 Route::get('/menu', [HomepageController::class, 'menu'])->name('menu');
-Route::get('/product-detail/{id}', [HomepageController::class, 'single'])->name('single.product');
+Route::get('/menu/{product}', [HomepageController::class, 'single'])->name('single.product');
 Route::get('/services', [HomepageController::class, 'services'])->name('services');
 Route::get('/blog', [HomepageController::class, 'blog'])->name('blog');
 Route::get('/about', [HomepageController::class, 'about'])->name('about');
@@ -26,21 +26,23 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'admin'], func
 
     // Admin Categories
     Route::get('categories/data', [CategoryController::class, 'data'])->name('categories.data');
-    Route::resource('categories', CategoryController::class);
+    Route::resource('categories', CategoryController::class)->except('show');
 
     // Admin Products
     Route::get('products/data', [ProductController::class, 'data'])->name('products.data');
-    Route::resource('products', ProductController::class);
+    Route::resource('products', ProductController::class)->except('show');
 
     // Admin Orders
     Route::get('orders/data', [OrderController::class, 'data'])->name('orders.data');
-    Route::resource('orders', OrderController::class);
+    Route::resource('orders', OrderController::class)->except('show', 'update', 'create', 'edit');
     Route::post('orders/{id}/status-delivered', [OrderController::class, 'delivered'])->name('status.delivered');
     Route::post('orders/{id}/status-success', [OrderController::class, 'success'])->name('status.success');
 
     // Admin Bookings
     Route::get('bookings/data', [BookingController::class, 'data'])->name('bookings.data');
-    Route::resource('bookings', BookingController::class);
+    Route::resource('bookings', BookingController::class)->except('show', 'update', 'create', 'edit');
+    Route::post('bookings/{id}/status-confirmed', [BookingController::class, 'confirmed'])->name('status.confirmed');
+    Route::post('bookings/{id}/status-completed', [BookingController::class, 'completed'])->name('status.completed');
 });
 
 Route::middleware('auth')->group(function () {

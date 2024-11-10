@@ -9,6 +9,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 ftco-animate">
+                    <h1 class="text-center">My Orders</h1>
                     <div class="cart-list">
                         <table class="table">
                             <thead class="thead-primary">
@@ -23,7 +24,6 @@
                             </thead>
                             <tbody>
                                 @if ($order->count() > 0)
-                                    <h1 class="text-center">My Orders</h1>
                                     @foreach ($order as $item)
                                         <tr class="text-center">
                                             <td>
@@ -63,7 +63,9 @@
                                         </tr>
                                     @endforeach
                                 @else
-                                    <h1 class="text-center">No Orders Available</h1>
+                                    <td colspan="5">
+                                        <h1 class="text-center">No Orders Available</h1>
+                                    </td>
                                 @endif
                                 <!-- END TR-->
                             </tbody>

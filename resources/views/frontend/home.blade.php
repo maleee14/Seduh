@@ -96,12 +96,6 @@
                     </div>
                 </div>
                 <div class="book p-4">
-                    @if (session()->has('date'))
-                        <div class="alert alert-success alert-dismissible">
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                            {{ session('date') }}
-                        </div>
-                    @endif
                     @if (session()->has('success'))
                         <div class="alert alert-success alert-dismissible">
                             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -134,7 +128,7 @@
                                 <div class="input-wrap">
                                     <div class="icon"><span class="ion-md-calendar"></span></div>
                                     <input type="text" name="date" class="form-control appointment_date"
-                                        placeholder="Date">
+                                        placeholder="Date" autocomplete="off">
                                     @error('date')
                                         <span class="text-danger" role="alert">
                                             {{ $message }}
@@ -364,13 +358,13 @@
                 @foreach ($coffee as $item)
                     <div class="col-md-3">
                         <div class="menu-entry">
-                            <a href="{{ route('single.product', $item->id) }}" class="img"
+                            <a href="{{ route('single.product', $item->name) }}" class="img"
                                 style="background-image: url({{ url('storage', $item->image) }});"></a>
                             <div class="text text-center pt-4">
                                 <h3><a href="{{ route('single.product', $item->id) }}">{{ $item->name }}</a></h3>
                                 <p>{{ implode(' ', array_slice(explode(' ', $item->description), 0, 10)) }}...</p>
                                 <p class="price"><span>{{ format_uang($item->price) }}</span></p>
-                                <form action="{{ route('add.cart', $item->id) }}" method="post">
+                                <form action="{{ route('add.cart', $item->name) }}" method="post">
                                     @csrf
                                     <input type="hidden" id="product_id" name="product_id"
                                         value="{{ $item->id }}">
@@ -474,12 +468,12 @@
                                         @foreach ($mainDish as $item)
                                             <div class="col-md-4 text-center">
                                                 <div class="menu-wrap">
-                                                    <a href="{{ route('single.product', $item->id) }}"
+                                                    <a href="{{ route('single.product', $item->name) }}"
                                                         class="menu-img img mb-4"
                                                         style="background-image: url({{ url('storage', $item->image) }});"></a>
                                                     <div class="text">
                                                         <h3><a
-                                                                href="{{ route('single.product', $item->id) }}">{{ $item->name }}</a>
+                                                                href="{{ route('single.product', $item->name) }}">{{ $item->name }}</a>
                                                         </h3>
                                                         <p>{{ implode(' ', array_slice(explode(' ', $item->description), 0, 10)) }}
                                                             ...</p>
@@ -520,12 +514,12 @@
                                         @foreach ($drinks as $item)
                                             <div class="col-md-4 text-center">
                                                 <div class="menu-wrap">
-                                                    <a href="{{ route('single.product', $item->id) }}"
+                                                    <a href="{{ route('single.product', $item->name) }}"
                                                         class="menu-img img mb-4"
                                                         style="background-image: url({{ url('storage', $item->image) }});"></a>
                                                     <div class="text">
                                                         <h3><a
-                                                                href="{{ route('single.product', $item->id) }}">{{ $item->name }}</a>
+                                                                href="{{ route('single.product', $item->name) }}">{{ $item->name }}</a>
                                                         </h3>
                                                         <p>{{ implode(' ', array_slice(explode(' ', $item->description), 0, 10)) }}
                                                             ...</p>
@@ -565,12 +559,12 @@
                                         @foreach ($desserts as $item)
                                             <div class="col-md-4 text-center">
                                                 <div class="menu-wrap">
-                                                    <a href="{{ route('single.product', $item->id) }}"
+                                                    <a href="{{ route('single.product', $item->name) }}"
                                                         class="menu-img img mb-4"
                                                         style="background-image: url({{ url('storage', $item->image) }});"></a>
                                                     <div class="text">
                                                         <h3><a
-                                                                href="{{ route('single.product', $item->id) }}">{{ $item->name }}</a>
+                                                                href="{{ route('single.product', $item->name) }}">{{ $item->name }}</a>
                                                         </h3>
                                                         <p>{{ implode(' ', array_slice(explode(' ', $item->description), 0, 10)) }}
                                                             ...</p>
@@ -738,8 +732,13 @@
         <div class="overlay"></div>
         <div class="container-wrap">
             <div class="row no-gutters d-md-flex align-items-center">
-                <div class="col-md-6 d-flex align-self-stretch">
-                    <div id="map"></div>
+                <div class="col-md-6 d-flex align-self-stretch ftco-animate">
+
+                    <iframe style="width: 650px; height: 450px;"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.9916246075636!2d2.2944812999999997!3d48.858370099999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e2964e34e2d%3A0x8ddca9ee380ef7e0!2sMenara%20Eiffel!5e0!3m2!1sid!2sid!4v1697971824820!5m2!1sid!2sid"
+                        allowfullscreen frameborder="0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        class="map"></iframe>
+
                 </div>
                 <div class="col-md-6 appointment ftco-animate">
                     @if (session()->has('date'))

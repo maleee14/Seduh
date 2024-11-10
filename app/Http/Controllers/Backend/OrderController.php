@@ -70,6 +70,7 @@ class OrderController extends Controller
         $order = Order::find($id);
         $order->delete();
 
+        session()->flash('delete', 'Data Berhasil Dihapus');
         return redirect()->route('orders.index');
     }
 

@@ -76,5 +76,10 @@
         </div>
     </section>
 
-    <div id="map"></div>
+    <div>
+        <iframe style="width: 1263px; height: 350px;"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.9916246075636!2d2.2944812999999997!3d48.858370099999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e2964e34e2d%3A0x8ddca9ee380ef7e0!2sMenara%20Eiffel!5e0!3m2!1sid!2sid!4v1697971824820!5m2!1sid!2sid"
+            allowfullscreen frameborder="0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            class="map"></iframe>
+    </div>
 @endsection

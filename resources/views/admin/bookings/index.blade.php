@@ -19,9 +19,9 @@
                                 {{ session('delete') }}
                             </div>
                         @endif
-                        <h5 class="card-title mb-4 d-inline">Categories</h5>
-                        <a href="{{ route('categories.create') }}"
-                            class="btn btn-primary mb-4 text-center float-right">Create</a>
+                        <h5 class="card-title mb-4 d-inline">Bookings</h5>
+                        {{-- <a href="3"
+                            class="btn btn-primary mb-4 text-center float-right">Create</a> --}}
 
                         <table class="table table-striped">
                             <thead>
@@ -32,6 +32,7 @@
                                     <th scope="col">Time</th>
                                     <th scope="col">Phone</th>
                                     <th scope="col">Message</th>
+                                    <th scope="col">Status</th>
                                     <th scope="col" width="15%">Action</th>
                                 </tr>
                             </thead>
@@ -70,6 +71,9 @@
                     },
                     {
                         data: 'message'
+                    },
+                    {
+                        data: 'status'
                     },
                     {
                         data: 'action',

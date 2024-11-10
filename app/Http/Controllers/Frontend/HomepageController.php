@@ -39,16 +39,15 @@ class HomepageController extends Controller
         return view('frontend.pages.menu', compact('mainDish', 'drinks', 'coffee', 'desserts'));
     }
 
-    public function single($id)
+    public function single($product)
     {
-        $products = Product::find($id);
+        $products = Product::where('name', $product)->first();
 
         if ($products !== null && $products->category !== null) {
             $related_product = Product::with('category')
                 ->where('category_id', $products->category->id) // Assuming 'category_id' is the foreign key in the 'products' table
                 ->where('id', '!=', $products->id) // Use $products->id to refer to the current product's ID
                 ->orderBy('created_at', 'desc')
-                ->take(3)
                 ->get();
         } else {
             abort(404);
@@ -59,29 +58,26 @@ class HomepageController extends Controller
 
     public function bookTable(Request $request)
     {
-        $validated = $request->validate([
+        $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
-            'date' => 'required',
-            'time' => 'required',
+            'date' => 'required|date|after_or_equal:today', // Validasi format waktu 12 jam dengan AM/PM
+            'time' => 'required|date_format:g:ia',
             'phone' => 'required',
             'message' => 'required',
         ]);
 
-        if ($validated['date'] > date('n/j/Y')) {
-            BookTable::create([
-                'user_id' => auth()->user()->id,
-                'first_name' => $validated['first_name'],
-                'last_name' => $validated['last_name'],
-                'date' => $validated['date'],
-                'time' => $validated['time'],
-                'phone' => $validated['phone'],
-                'message' => $validated['message'],
-            ]);
-            session()->flash('success', 'Berhasil');
-            return redirect()->route('home');
-        }
-        session()->flash('date', 'Invalid Date');
+        BookTable::create([
+            'user_id' => auth()->user()->id,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'date' => $request->date,
+            'time' => $request->time,
+            'phone' => $request->phone,
+            'message' => $request->message,
+            'status' => 'pending',
+        ]);
+        session()->flash('success', 'Berhasil');
         return redirect()->route('home');
     }
 

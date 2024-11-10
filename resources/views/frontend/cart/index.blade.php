@@ -17,29 +17,11 @@
 @endpush
 
 @section('content')
-    <section class="home-slider owl-carousel">
-
-        <div class="slider-item" style="background-image: url({{ asset('assets/images/bg_3.jpg') }});"
-            data-stellar-background-ratio="0.5">
-            <div class="overlay"></div>
-            <div class="container">
-                <div class="row slider-text justify-content-center align-items-center">
-
-                    <div class="col-md-7 col-sm-12 text-center ftco-animate">
-                        <h1 class="mb-3 mt-5 bread">Cart</h1>
-                        <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Cart</span>
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section class="ftco-section ftco-cart">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 ftco-animate">
+                    <h1 class="text-center">Carts</h1>
                     <div class="cart-list">
                         <table class="table">
                             <thead class="thead-primary">
@@ -85,7 +67,9 @@
                                         </tr>
                                     @endforeach
                                 @else
-                                    <h1 class="text-center">No Items in Cart</h1>
+                                    <td colspan="6">
+                                        <h1 class="text-center">No Items in Cart</h1>
+                                    </td>
                                 @endif
                                 <!-- END TR-->
                             </tbody>
@@ -103,11 +87,11 @@
                         </p>
                         <p class="d-flex">
                             <span>Delivery</span>
-                            <span>$0.00</span>
+                            <span>{{ format_uang(0) }}</span>
                         </p>
                         <p class="d-flex">
                             <span>Discount</span>
-                            <span>$0.00</span>
+                            <span>{{ format_uang(0) }}</span>
                         </p>
                         <hr>
                         <p class="d-flex total-price">
@@ -149,10 +133,10 @@
                 @foreach ($products as $item)
                     <div class="col-md-3">
                         <div class="menu-entry">
-                            <a href="#" class="img"
+                            <a href="{{ route('single.product', $item->name) }}" class="img"
                                 style="background-image: url({{ url('storage', $item->image) }});"></a>
                             <div class="text text-center pt-4">
-                                <h3><a href="#">{{ $item->name }}</a></h3>
+                                <h3><a href="{{ route('single.product', $item->name) }}">{{ $item->name }}</a></h3>
                                 <p>{{ implode(' ', array_slice(explode(' ', $item->description), 0, 8)) }}...</p>
                                 <p class="price"><span>{{ format_uang($item->price) }}</span></p>
                                 <form action="{{ route('add.cart', $item->id) }}" method="post">

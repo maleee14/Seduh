@@ -16,5 +16,6 @@ class BookTable extends Model
         'time',
         'phone',
         'message',
+        'status',
     ];
 }

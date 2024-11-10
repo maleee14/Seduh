@@ -7,6 +7,18 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body">
+                        @if (session()->has('success'))
+                            <div class="alert alert-success alert-dismissible">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                {{ session('success') }}
+                            </div>
+                        @endif
+                        @if (session()->has('delete'))
+                            <div class="alert alert-danger alert-dismissible">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                {{ session('delete') }}
+                            </div>
+                        @endif
                         <h5 class="card-title mb-4 d-inline">Orders</h5>
 
                         <table class="table">
